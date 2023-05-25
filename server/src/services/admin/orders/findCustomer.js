@@ -1,0 +1,48 @@
+const db = require("../../../models");
+
+exports.findCustomer = async (key) => {
+  try {
+    const [find] = await db.sequelize.query(`
+        select
+            *
+        from
+            (
+                select
+                    users.id as 'user_id',
+                    users.avatar,
+                    users.firstName,
+                    users.middleName,
+                    users.lastName,
+                    rtrim(
+                        ltrim(
+                            CONCAT(
+                                IFNULL(users.firstName, ''),
+                                ' ',
+                                IFNULL(users.middleName, ''),
+                                ' ',
+                                users.lastName
+                            )
+                        )
+                    ) as fullName,
+                    users.phoneNumber,
+                    users.address,
+                    users.dateOfBirth,
+                    genders.name as 'gender'
+                from
+                    users
+                    left join genders on genders.code = users.genderCode
+            ) as u
+        where
+            u.phoneNumber like N'%${key || ""}%'
+            or u.fullName like N'%${key || ""}%';
+    `);
+
+    return {
+      err: find ? 0 : 1,
+      msg: find ? "Get data successfully" : "Get data failure",
+      data: find ? find : [],
+    };
+  } catch (error) {
+    return error;
+  }
+};

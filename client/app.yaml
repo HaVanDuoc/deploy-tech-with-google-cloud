@@ -1,0 +1,15 @@
+runtime: python39
+service: default
+
+handlers:
+  - url: /
+    static_files: build/index.html
+    upload: build/index.html
+
+  - url: /(.*)
+    static_files: build/\1
+    upload: build/(.*)
+
+env_variables:
+  REACT_APP_PUBLIC_FOLDER: "https://tech2-387808.as.r.appspot.com"
+  REACT_APP_AXIOS_BASE_URL: "https://server-dot-tech2-387808.as.r.appspot.com/api/v1"

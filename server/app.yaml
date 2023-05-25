@@ -1,0 +1,8 @@
+runtime: nodejs16
+service: server
+env_variables:
+  JWT_SECRET: "havanduoc"
+  DATABASE: "tech"
+  USER: "havanduoc"
+  PASSWORD: "[[Z5(KEsfIyXC=e$"
+  INSTANCE: "/cloudsql/tech2-387808:asia-southeast1:tech"

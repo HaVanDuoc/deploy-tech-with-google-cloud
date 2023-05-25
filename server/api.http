@@ -1,0 +1,369 @@
+### api.http
+
+# ------- Find --------
+# API USER
+# API PRODUCT
+
+### Not Found
+POST http://localhost:4000/api/v1/notFound
+
+# ---------------- Auth ------------------
+
+###
+POST http://localhost:4000/api/v1/client/auth/
+Content-Type: application/json
+
+{
+    "Authorization": "djsklfjs"
+}
+
+### Register
+POST http://localhost:4000/api/v1/client/auth/register
+Content-Type: application/json
+
+{
+    "firstName": "Hà",
+    "middleName": "Văn",
+    "lastName": "Được",
+    "email": "havanduoc21@gmail.com",
+    "password": "123456"
+}
+
+### Login
+POST http://localhost:4000/api/v1/auth/login
+Content-Type: application/json
+
+{
+    "email": "havanduoc@gmail.com",
+    "password": "123456"
+}
+
+
+# ----------------------------------------------------------------------------------------------------
+# ----------------------------------------------------------------------------------------------------
+# ----------------------------------------------------------------------------------------------------
+
+# --------------------------------- ADMIN --------------------------------
+
+### Access admin page
+POST http://localhost:4000/api/v1/admin/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiZW1haWwiOiJhZG1pbkBnbWFpbC5jb20iLCJmaXJzdE5hbWUiOiJIw6AiLCJsYXN0TmFtZSI6IlbEg24gxJDGsOG7o2MiLCJyb2xlX2NvZGUiOiJyMiIsImlhdCI6MTY3NjI2OTg5NCwiZXhwIjoxNjc2ODc0Njk0fQ.vsT-ydusjGtLjSWpW-YxbZi6MW2fQzUa4q2s42JI8s8
+
+# ----------------------------------------------------------------------------------------------------
+# API USER
+# ----------------------------------------------------------------------------------------------------
+
+### [GET] List User
+GET http://localhost:4000/api/v1/admin/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiZW1haWwiOiJhZG1pbkBnbWFpbC5jb20iLCJmaXJzdE5hbWUiOiJIw6AiLCJsYXN0TmFtZSI6IlbEg24gxJDGsOG7o2MiLCJyb2xlX2NvZGUiOiJyMiIsImlhdCI6MTY3NjI2OTg5NCwiZXhwIjoxNjc2ODc0Njk0fQ.vsT-ydusjGtLjSWpW-YxbZi6MW2fQzUa4q2s42JI8s8
+
+### [GET] One User
+GET http://localhost:4000/api/v1/admin/user/U00000005
+
+### [POST] CREATE NEW USER
+POST http://localhost:4000/api/v1/admin/user/newUser
+Content-Type: application/json
+
+{
+    "firstName": "Hà",
+    "middleName": "Văn",
+    "lastName": "Được",
+    "email": "havanduoc6@gmail.com",
+    "password": "123456",
+    "phoneNumber": "0382494285",
+    "gender": "1",
+    "role": "R002"
+}
+
+### [PUT] Update User
+PUT http://localhost:4000/api/v1/admin/user/U00000001
+Content-Type: application/json
+
+{
+
+}
+
+### Get current user
+GET http://localhost:4000/api/v1/user/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJoYXZhbmR1b2MiLCJyb2xlX2NvZGUiOiJyMSIsImlhdCI6MTY3NTc1MjE0NSwiZXhwIjoxNjc2MzU2OTQ1fQ.hDutZsXcA4gsXncvky9GorT9rgY2ozDuQLyBLo4eZ18
+
+### CREAET NEW USER
+POST http://localhost:4000/api/v1/admin/user/newUser
+Content-Type: application/json
+
+{
+    "firstName": "Hà",
+    "middleName": "Văn",
+    "lastName": "Được",
+    "email": "havanduoc@gmail.com",
+    "password": "123456",
+    "phoneNumber": "0123456789",
+    "address": "Việt nam",
+    "gender": "male"
+}
+
+### CREATE NEW ROLE AMDIN
+POST http://localhost:4000/api/v1/admin/database/newRole
+Content-Type: application/json
+
+{
+    "name": ""
+}
+
+### CREATE NEW CATEGORY ADMIN
+POST http://localhost:4000/api/v1/admin/database/newCategory
+Content-Type: application/json
+
+{
+    "name": "thẻ cào"
+}
+
+### CREATE NEW STATUS ADMIN
+POST http://localhost:4000/api/v1/admin/database/newStatus
+Content-Type: application/json
+
+{
+    "name": "disable"
+}
+
+### Get List Role
+GET http://localhost:4000/api/v1/admin/roles
+
+### [DB]
+
+### Get List Tables
+GET http://localhost:4000/api/v1/db/
+
+### Get Gender
+GET http://localhost:4000/api/v1/db/getGender
+
+### Get List Role
+GET http://localhost:4000/api/v1/db/listRole
+
+### Get Status Account
+GET http://localhost:4000/api/v1/db/statusAccount
+
+
+
+### ---------------- Admin Productt ---------------------
+
+# ----------------------------------------------------------------------------------------------------
+# API PRODUCT
+# ----------------------------------------------------------------------------------------------------
+
+### [GET] List Products
+GET http://localhost:4000/api/v1/admin/products
+
+### [GET] Product
+GET http://localhost:4000/api/v1/admin/product/P00000005
+
+### [DELETE] Product
+DELETE http://localhost:4000/api/v1/admin/product/P00000001
+
+### [GET] List category for select option category
+GET http://localhost:4000/api/v1/admin/product/newProduct/listCategory
+
+### [POST] List brand for select option brand
+POST http://localhost:4000/api/v1/admin/product/newProduct/listSelectBrand
+Content-Type: application/json
+
+{
+    "categoryId": "C001"
+}
+
+### [POST] Insert porduct
+POST http://localhost:4000/api/v1/admin/product/newProduct
+Content-Type: application/json
+
+{
+    "name": "iPhone 14 Plus",
+    "price": "27000000",
+    "category": "C001",
+    "brand": "M001"
+}
+
+### [GET] get category
+GET http://localhost:4000/api/v1/client/nav
+
+### [GET] get category
+GET http://localhost:4000/api/v1/admin/display/category
+
+### [POST] create new category
+POST http://localhost:4000/api/v1/admin/display/category/newCategory
+Content-Type: application/json
+
+{
+    "name": "Điện thoại",
+    "image": "iamge",
+    "link": "link"
+}
+
+### [GET] get category
+GET http://localhost:4000/api/v1/admin/display/category/C001
+
+### [PUT] update category
+PUT http://localhost:4000/api/v1/admin/display/category/C001
+Content-Type: application/json
+
+{
+    "brands": ["Samsung", "Oppo"]
+}
+
+### Section Product
+
+### List product
+POST http://localhost:4000/api/v1/sectionProduct/getListProduct/laptop
+
+### List product
+GET http://localhost:4000/api/v1/admin/display/brand
+
+### 
+POST http://localhost:4000/api/v1/admin/display/brand/newBrand
+Content-Type: application/json
+
+{
+    "name": "iPhone"
+}
+
+### 
+GET http://localhost:4000/api/v1/admin/listBrand
+
+### 
+POST http://localhost:4000/api/v1/admin/display/updateCategory/C001/setBrandForCategories
+Content-Type: application/json
+
+{
+    "name": "iPhone"
+}
+
+### 
+GET http://localhost:4000/api/v1/admin/display/category/updateCategory/C001/selectedBrands
+
+### 
+GET http://localhost:4000/api/v1/admin/display/brand/001
+
+### 
+PUT http://localhost:4000/api/v1/admin/display/brand/update/001
+Content-Type: application/json
+
+{
+    "name": "iPhone"
+}
+
+### 
+POST  http://localhost:4000/api/v1/client/showBrand
+Content-Type: application/json
+
+{
+    "currentPage": "Điện thoại"
+}
+
+### 
+PUT  http://localhost:4000/api/v1/admin/product/update/P00000007
+Content-Type: application/json
+
+{
+    "images": [
+        "sldkfjsk", "sdklfjsdk"
+    ]
+}
+
+### 
+POST  http://localhost:4000/api/v1/client/pageProduct/product
+Content-Type: application/json
+
+{
+    "nameProduct": "OPPO A17"
+}
+
+### 
+PUT  http://localhost:4000/api/v1/client/categories/view
+Content-Type: application/json
+
+{
+    "id": "21"
+}
+
+### 
+GET  http://localhost:4000/api/v1/client/productDetails/sectionCategories
+
+### 
+POST   http://localhost:4000/api/v1/client/productDetails/sectionBrands
+Content-Type: application/json
+
+{
+    "category": "Điện thoại"
+}
+
+### 
+GET   http://localhost:4000/api/v1/admin/products/
+
+
+### 
+POST   http://localhost:4000/api/v1/admin/products
+Content-Type: application/json
+
+{
+    "name": "slkfjsdfj",
+    "price": "1231",
+    "stock": "12",
+    "category": "C001",
+    "brand": "010",
+    "discount": "131",
+    "image": [{"base": "sdkjfkdsjf"}]
+}
+
+### 
+PUT   http://localhost:4000/api/v1/admin/products/updateDetails
+Content-Type: application/json
+
+{
+    "productId": "P00000013",
+    "stock": "3"
+}
+
+### 
+GET    http://localhost:4000/api/v1/client/home
+
+
+### 
+POST  http://localhost:4000/api/v1/client/search/recent
+Content-Type: application/json
+
+{
+    "user_id": "26"
+}
+
+### 
+POST  http://localhost:4000/api/v1/admin/orders/getOrders
+Content-Type: application/json
+
+{
+    "pagination": "2"
+}
+
+
+### 
+POST  http://localhost:4000/api/v1/client/search/saveRecent
+Content-Type: application/json
+
+{
+    "user_id": "26",
+    "product_id": "11"
+}
+
+### 
+POST  http://localhost:4000/api/v1/admin/orders/getOrderDetails
+Content-Type: application/json
+
+{
+    "codeOrder": "1d6afae1-5794-488e-b9e0-657317ae89cb"
+}
+
+### 
+POST  http://localhost:4000/api/v1/admin/orders/orderDetails/increase
+Content-Type: application/json
+
+{
+    "order_items_id": "13"
+}
